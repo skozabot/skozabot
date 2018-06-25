@@ -338,4 +338,4 @@ module.exports.help = {
   name: "removerole"
 }
 });
-bot.login('NDYwODU3NjMwMjYxNTEwMTU0.DhK8uw.9jhxE2I5GnN3OBqzygX4xAF9vT0')
+bot.login(process.env.TOKEN)
