@@ -16,6 +16,13 @@ bot.on('guildMemberAdd', function (member) {
   })
 	member.guild.channels.find('name', '🖐ņouveaű').send("Bienvenue " + member + " vas voir <#444518041867517962> pour avoir accès a d'autre salon. J'espère que tu seras actif :grin: Veut tu être membre ?")
 });
+bot.on('guildMemberRemove', function (member) {
+	member.createDM().then(function (channel) 
+  {
+    channel.send("Au revoir à toi sur serveur Le terrier des créateurs !")
+  })
+	member.guild.channels.find('name', '🖐ņouveaű').send("Bye " + member + " tu était un bon amis !")
+});
 bot.on('message', async (message)=>{
 if (message.content === prefix + 'help') {
 	let help = new Discord.RichEmbed()
@@ -24,6 +31,9 @@ if (message.content === prefix + 'help') {
 	.addField('.ban <pseudo> <raison>', 'Sert a bon définitivement une personne du serveur.')
 	.addField('.mute <pseudo>', 'Sert à mute une personne.')
 	.addField('.unmute <pseudo>', 'Sert à unmute une personne.')
+	.addField('.addrole <pseudo> role', 'Sert à donner un role.')
+	.addField('.removerole <pseudo> role', 'Sert à enlever un role.')
+	.addField('Créé par DiMz :', 'https://discord.gg/CadY7bD')
 	message.channel.send(help)
 }
 });
@@ -222,33 +232,6 @@ bot.on("message", async message => {
 
 
     return;
-  }
-  if (cmd === (prefix + 'botinfo') || cmd === (prefix + 'bi')) {
-  	let botembed = new Discord.RichEmbed()
-  	.setTitle('Bot Info')
-  	.setColor('#FFFFFF')
-  	.addField('Bot Name', 'Zakayo')
-  	.addField('Créator', 'TC_DiMz#5657')
-    .addField('Site web', 'Très prochainement !')
-  	.addField('Total server :', bot.guilds.size)
-    .addField('Guilds Name Liste', bot.guilds.map(g => g.name))
-    message.channel.send(botembed)
-  }
-
-  if(cmd === (prefix + 'si')){
-
-    let sicon = message.guild.iconURL;
-    let serverembed = new Discord.RichEmbed()
-    .setDescription("Server Information")
-    .setColor("#FFFFFF")
-    .setThumbnail(sicon)
-    .addField("Server Name", message.guild.name)
-    .addField("Created On", message.guild.createdAt)
-    .addField("You Joined", message.member.joinedAt)
-    .addField("Total Members", message.guild.memberCount)
-
-
-    return message.channel.send(serverembed);
   }
 
 if(cmd === (prefix + 'addrole')){
